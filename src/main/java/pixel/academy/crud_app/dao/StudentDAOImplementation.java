@@ -1,10 +1,13 @@
 package pixel.academy.crud_app.dao;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pixel.academy.crud_app.entity.Student;
+
+import java.util.List;
 
 @Repository
 public class StudentDAOImplementation implements StudentDAO {
@@ -29,5 +32,13 @@ public class StudentDAOImplementation implements StudentDAO {
         return entityManager.find(Student.class, id);
     }
 
+    @Override
+    public List<Student> findAll() {
+        // create querry
+        TypedQuery<Student> theQuery = entityManager.createQuery("FROM Student", Student.class);
+
+        //returnam querry results
+        return theQuery.getResultList();
+    }
 
 }

@@ -20,14 +20,16 @@ public class CrudAppApplication {
 
 		return runner -> {
 			//createStudent(studentDAO);
-			createMultipleStudents(studentDAO);
+			//createMultipleStudents(studentDAO);
+			//readStudent(studentDAO);
+			querryForStudents(studentDAO);
 		};
 
 	}
 	private void createStudent(StudentDAO studentDAO) {
 		//cream un obiect Student
 		System.out.println("Creating new student object...");
-		Student newStudent = new Student("John", "Doe", "john@pixelacademy.md");
+		Student newStudent = new Student("Vasilie", "Branza", "branza@pixelacademy.md");
 
 		//salvam obiectul Student in baza de date
 		System.out.println("Saving student object...");
@@ -40,15 +42,47 @@ public class CrudAppApplication {
 	}
 	private void createMultipleStudents(StudentDAO studentDAO) {
 	System.out.println("Creating 3 students...");
-	Student newStudent1 = new Student("Andrei", "Munteanu", "andrei@pixelacademy.md");
-	Student newStudent2 = new Student("Iulian", "Vataman", "iulic@pixelacademy.md");
-	Student newStudent3 = new Student("Maria", "Mirabela", "mira@pixelacademy.md");
+	Student newStudent1 = new Student("Andrei1", "Munteanu", "andrei@pixelacademy.md");
+	Student newStudent2 = new Student("Iulian2", "Vataman", "iulic@pixelacademy.md");
+	Student newStudent3 = new Student("Maria3", "Mirabela", "mira@pixelacademy.md");
 
 	//salvam obiectele student in baza de date
 		System.out.println("Saving the students...");
 		studentDAO.save(newStudent1);
 		studentDAO.save(newStudent2);
 		studentDAO.save(newStudent3);
+
+	}
+
+	private void readStudent(StudentDAO studentDAO) {
+
+		//creeaza un obiect de tip Student
+		System.out.println("Creating new student object...");
+		Student newStudent = new Student("Mircea", "Popescu", "mircea@pixel.academy");
+
+		//salveaza studentul in baza de date
+		System.out.println("Saving new student object...");
+		studentDAO.save(newStudent);
+
+		// afiseaza id-ul studentului salvat
+		int theId = newStudent.getId();
+		System.out.println("Reading student with id " + theId);
+
+		// recupereaza studentul pe baza ID-ului (PK)
+		System.out.println("Retrieving student with id " + theId);
+		Student myStudent = studentDAO.findById(theId);
+
+		// afiseaza detaliile studentului
+		System.out.println("Found the student: "  + myStudent );
+
+	}
+	private void querryForStudents(StudentDAO studentDAO) {
+
+		//obtine leista d estudenti
+		System.out.println("Extrage lista studentilor...");
+
+
+		//afiseaza lista de studenti
 
 	}
 }

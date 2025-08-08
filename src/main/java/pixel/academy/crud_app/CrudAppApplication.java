@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import pixel.academy.crud_app.dao.StudentDAO;
 import pixel.academy.crud_app.entity.Student;
 
+import java.util.List;
+
 @SpringBootApplication
 public class CrudAppApplication {
 
@@ -80,9 +82,12 @@ public class CrudAppApplication {
 
 		//obtine leista d estudenti
 		System.out.println("Extrage lista studentilor...");
-
+		List<Student> theStudents = studentDAO.findAll();
 
 		//afiseaza lista de studenti
+		for (Student newStudent : theStudents) {
+			System.out.println(newStudent);
+		}
 
 	}
 }
